@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DinoGame Reboot</title>
+</head>
+<body>
+<canvas id="levelbase" width="1536" height="750">
+
+</canvas>
+<script>
+    var c = document.getElementById("levelbase");
+    var ctx = c.getContext("2d");
+    ctx.beginPath();
+    ctx.lineTo(0, 500);
+    ctx.lineTo(1535, 500);
+    ctx.stroke();
+    ctx.strokeStyle = "#ffffff";
+
+    var a = document.getElementById("levelbase");
+    var ctx2 = a.getContext("2d");
+    ctx2.beginPath();
+    ctx2.lineTo(50, 500);
+    ctx2.lineTo(15, 500);
+    ctx2.moveTo(0,2);
+    ctx2.stroke();
+
+    var b = document.getElementById("levelbase");
+    var ctx3 = b.getContext("2d");
+    ctx3.beginPath();
+    ctx3.lineTo(500, 500);
+    ctx3.lineTo(125, 500);
+    ctx3.moveTo(0,2);
+    ctx3.stroke();
+
+    var d = document.getElementById("levelbase");
+    var ctx4 = d.getContext("2d");
+    ctx4.beginPath();
+    ctx4.lineTo(1100, 500);
+    ctx4.lineTo(1200, 500);
+    ctx4.moveTo(0,2);
+    ctx4.stroke();
+    
+    function refresh() {
+        const now = window.Date.now();
+
+        if (lastUpdate){
+
+            const elapsed = (now - lastUpdate) / 1000;
+            lastUpdate = now;
+
+            update(state, elapsed);
+
+            render(ctx, state);
+        }else {
+            state = init(ctx);
+            lastUpdate = now;
+        }
+        console.log(state);
+
+        requestAnimationFrame(tick);
+    }
+
+
+
+</script>
+</body>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        background-color: #f0f0f0;
+    }
+</style>
+</html>
