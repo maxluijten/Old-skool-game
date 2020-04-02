@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Landscape</title>
+</head>
+<body>
+
+<canvas id="canvas"></canvas>
+
+<script type="module">
+    import {player,canvas,ctx,requestAnim,keypressed} from "./Player.js";
+
+    requestAnim(function loop() {
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        player.draw();
+
+        if (keypressed) {
+            player.velo = -5;
+            keypressed = false;
+        }
+        player.Up();
+        
+        requestAnim(loop);
+    });
+
+
+</script>
+</body>
+</html>
