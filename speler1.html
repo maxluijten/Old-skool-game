@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <canvas id="mycanvas"></canvas>
+    <script>
+        const canvas = document.getElementById("mycanvas");
+        const ctx = canvas.getContext('2d');
+        let gravity = 0.1; //hoe snel het object naar beneden komt
+
+        canvas.width = 500;
+        canvas.height = 500;
+
+        let keypressed = false;
+
+        function Player(x, y) {
+            this.x = x;
+            this.y = y;
+            this.velocity = 0;
+
+        }
+
+        Player.prototype.draw = function () {
+            ctx.beginPath();
+            ctx.fillRect(this.x, this.y,20,20);
+            ctx.stroke();
+        };
+
+        Player.prototype.update = function() {
+            if (this.y + this.velocity + 36 > 500) {
+                this.velocity = 0;
+                this.y = 500 - 36;
+            } else {
+                this.velocity += gravity;
+                this.y += this.velocity;
+            }
+        };
+        const player1 = new Player(30, 450);
+
+        const requestAnim = window.requestAnimationFrame || setInterval;
+
+        requestAnim(function loop() {
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            player1.draw();
+
+            if (keypressed) {
+                player1.velocity = -5;
+                keypressed = false;
+            }
+            player1.update();
+
+            requestAnim(loop);
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.keyCode == '38') {
+                keypressed = true;
+            }
+        }, false);
+    </script>
+</body>
+</html>
