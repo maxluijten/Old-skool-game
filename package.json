@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/maxluijten/Old-skool-game#readme",
   "dependencies": {
-    "webpack": "^4.41.6"
+    "webpack": "^5.75.0"
   }
 }
